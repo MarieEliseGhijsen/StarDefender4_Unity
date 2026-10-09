@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 85f8026879d6a4c4b827790a76d4cfa5
+  productGUID: 2de6f0a6911563440a38ae8b81424416
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: StarDefender4
+  companyName: Default.inc
+  productName: Lab01
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -528,7 +528,10 @@ PlayerSettings:
       m_Height: 720
       m_Kind: 1
       m_SubKind: 
-  m_BuildTargetBatching: []
+  m_BuildTargetBatching:
+  - m_BuildTarget: Standalone
+    m_StaticBatching: 1
+    m_DynamicBatching: 0
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
   m_BuildTargetGraphicsJobMode: []
@@ -850,14 +853,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: StarDefender4
+  metroPackageName: Lab01
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: StarDefender4
+  metroApplicationDescription: Lab01
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -928,10 +931,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: b1536454-583b-440e-aaa5-eb0e476e39d6
+  cloudProjectId: db406fe2-5de6-4b66-8837-f55847c810d9
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: StarDefender4
+  projectName: Lab01
   organizationId: marieeliseghijsenmtwxlgb3
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
