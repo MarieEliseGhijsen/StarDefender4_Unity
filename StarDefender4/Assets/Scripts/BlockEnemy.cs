@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlockEnemy : MonoBehaviour
@@ -7,10 +9,14 @@ public class BlockEnemy : MonoBehaviour
     private Vector3 prevDir;
     public float speed;
 
+    public GameObject bulletPrefab;
+
     private float spawnTimer;
     private const int SPAWN_TIMER_END = 600;
     private float sideTimer;
     private const int SIDE_MOVE_TIMER_END = 1000;
+    private float shootTimer;
+    private const int SHOOT_TIMER_END = 10000;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,32 +34,43 @@ public class BlockEnemy : MonoBehaviour
         speed = 5.0f;
         spawnTimer = 0.0f;
         sideTimer = SIDE_MOVE_TIMER_END + 1.0f;
+
+        shootTimer = Random.Range(0.0f, SHOOT_TIMER_END);
+    }
+
+    void shoot()
+    {
+        Instantiate(bulletPrefab, rb.position, bulletPrefab.transform.rotation);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (shootTimer > SHOOT_TIMER_END)
+        {
+            shootTimer = Random.Range(0.0f, SHOOT_TIMER_END);
+            shoot();
+        }
+        else
+        {
+            shootTimer++;
+        }
+
         if (spawnTimer > SPAWN_TIMER_END)
         {
             if (sideTimer > SIDE_MOVE_TIMER_END)
             {
                 sideTimer = 0;
 
-                prevDir = dir;
-
-                dir = new Vector3(0.0f, 0.0f, -1.0f);
-
-                rb.AddForce(dir * speed);
-
-                if (prevDir.x == 0)
+                if (dir.z != 0.0f)
                 {
-                    int randDir = (int)Random.Range(0.0f, 1.0f);
-
-                    if (randDir == 0) prevDir.x = -1.0f;
-                    else prevDir.x = 1.0f;
+                    dir = new Vector3(prevDir.x * -1, 0, 0);
+                    prevDir = new Vector3(dir.x, 0, 0);
                 }
-
-                dir = new Vector3(prevDir.x * -1, 0.0f, 0.0f);
+                else
+                {
+                    dir = new Vector3(0, 0, -1);
+                }
             }
             else
             {
