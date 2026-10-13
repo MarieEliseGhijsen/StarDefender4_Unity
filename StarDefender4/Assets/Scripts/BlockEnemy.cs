@@ -16,7 +16,7 @@ public class BlockEnemy : MonoBehaviour
     private float sideTimer;
     private const int SIDE_MOVE_TIMER_END = 1000;
     private float shootTimer;
-    private const int SHOOT_TIMER_END = 10000;
+    private const int SHOOT_TIMER_END = 1000;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
