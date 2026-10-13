@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4814845728177676122}
   - component: {fileID: 6952337911724257288}
   - component: {fileID: 3384020058573656667}
+  - component: {fileID: 8313676163308985942}
   m_Layer: 0
   m_Name: CircEnemy
   m_TagString: Enemy
@@ -140,3 +141,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &8313676163308985942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545488025050065522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35ade572be3f4945be97880f8760365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CircEnemy

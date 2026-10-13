@@ -157,6 +157,8 @@ MonoBehaviour:
   scoreTextObject: {fileID: 1871283065}
   livesTextObject: {fileID: 1058271268}
   winTextObject: {fileID: 1776895751}
+  flash: {fileID: 2100000, guid: 6b210cf43e047eb4d93fd09b48554bf5, type: 2}
+  human: {fileID: 2100000, guid: e3dc8209aa6774345aa86d6e386eedf9, type: 2}
 --- !u!114 &3623462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,7 +478,6 @@ GameObject:
   - component: {fileID: 277926144}
   - component: {fileID: 277926147}
   - component: {fileID: 277926146}
-  - component: {fileID: 277926145}
   m_Layer: 0
   m_Name: East WAll
   m_TagString: Untagged
@@ -499,27 +500,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1563411008}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &277926145
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 277926143}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &277926146
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -577,6 +557,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277926143}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &595926823
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4545488025050065522, guid: b8c82f681000a9f4db139973ff826178, type: 3}
+      propertyPath: m_Name
+      value: CircEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258779854228525575, guid: b8c82f681000a9f4db139973ff826178, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.7027545
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258779854228525575, guid: b8c82f681000a9f4db139973ff826178, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2500003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258779854228525575, guid: b8c82f681000a9f4db139973ff826178, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.9856505
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258779854228525575, guid: b8c82f681000a9f4db139973ff826178, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258779854228525575, guid: b8c82f681000a9f4db139973ff826178, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258779854228525575, guid: b8c82f681000a9f4db139973ff826178, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258779854228525575, guid: b8c82f681000a9f4db139973ff826178, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258779854228525575, guid: b8c82f681000a9f4db139973ff826178, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258779854228525575, guid: b8c82f681000a9f4db139973ff826178, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258779854228525575, guid: b8c82f681000a9f4db139973ff826178, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b8c82f681000a9f4db139973ff826178, type: 3}
 --- !u!1 &743671236
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,7 +722,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 2, y: 2, z: 1.22502}
+  m_LocalScale: {x: 4, y: 2, z: 1.22502}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -701,7 +738,6 @@ GameObject:
   - component: {fileID: 864929513}
   - component: {fileID: 864929516}
   - component: {fileID: 864929515}
-  - component: {fileID: 864929514}
   m_Layer: 0
   m_Name: West Wall
   m_TagString: Untagged
@@ -724,27 +760,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1563411008}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &864929514
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864929512}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &864929515
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1817,3 +1832,4 @@ SceneRoots:
   - {fileID: 1410434561}
   - {fileID: 1558762439}
   - {fileID: 36302202}
+  - {fileID: 595926823}

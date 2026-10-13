@@ -13,11 +13,18 @@ public class PlayerController : MonoBehaviour
     public GameObject livesTextObject;
     public GameObject winTextObject;
 
+    public Material flash;
+    public Material human;
+
     private Rigidbody rb;
     private float movementX;
 
     int score;
     int lives;
+
+    bool invinsible;
+    float invinsibleTimer;
+    const float INVINSIBLE_TIMER_END = 2.0f;
 
     //private MonoBehaviour enemyScript = GetMonoBehaviour()
 
@@ -31,27 +38,24 @@ public class PlayerController : MonoBehaviour
         lives = 3;
         SetLivesText();
         winTextObject.SetActive(false);
+        invinsibleTimer = 0.0f;
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (invinsible)
         {
-            //EnemiesMovement enemyScript = collision.gameObject.GetComponent<EnemiesMovement>();
-            //if (enemyScript != null)
-            //{
-            //    if (enemyScript.mass > mass)
-            //    {
-            //        winTextObject.SetActive(true);
-            //        winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
-            //        Destroy(GameObject.FindGameObjectWithTag("Player"));
-            //    }
-            //    else
-            //    {
-            //        SetScoreText();
-            //        Destroy(collision.gameObject);
-            //    }
-            //}
+            return;
+        }
 
+        if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("Enemy"))
+        {
+            Renderer skin = GetComponent<Renderer>();
+            lives--;
+            SetLivesText();
+            Destroy(collision.gameObject);
+
+            invinsible = true;
+            FlashChange(invinsible);
         }
     }
 
@@ -59,6 +63,20 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
+    }
+
+    private void FlashChange(bool t_flash)
+    {
+        Renderer skin = GetComponent<Renderer>();
+
+        if (t_flash)
+        {
+            skin.material = flash;
+        }
+        else
+        {
+            skin.material = human;
+        }
     }
 
     void SetScoreText()
@@ -77,11 +95,23 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(movement * speed);
 
-        //if(!GameObject.FindGameObjectWithTag("Enemy"))
-        //{
-        //    winTextObject.SetActive(true);
-        //    winTextObject.GetComponent<TextMeshProUGUI>().text = "You Win!";
-        //}
+        if(lives <= 0)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Player"));
+            winTextObject.SetActive(true);
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+        }
+
+        if(invinsible && invinsibleTimer > INVINSIBLE_TIMER_END)
+        {
+            invinsible = false;
+            invinsibleTimer = 0.0f;
+            FlashChange(invinsible);
+        }
+        else if (invinsible)
+        {
+            invinsibleTimer += Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
