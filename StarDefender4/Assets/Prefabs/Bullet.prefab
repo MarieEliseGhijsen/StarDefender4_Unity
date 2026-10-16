@@ -107,6 +107,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Buulet
   speed: 0
   isPlayerBullet: 0
+  enemySkin: {fileID: 2100000, guid: 87c07835f8783ea40af741473b1b31cb, type: 2}
+  humanSkin: {fileID: 2100000, guid: eeb2a34eb410ab044a11c11bfc830302, type: 2}
+  player: {fileID: 8569342743236365416, guid: ad479a2ad9b3756409e7c34ac1d70a0d, type: 3}
 --- !u!54 &-1442166772787331393
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,7 +152,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

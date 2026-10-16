@@ -7,27 +7,50 @@ public class Buulet : MonoBehaviour
     public float speed;
 
     public bool isPlayerBullet;
+    public Material enemySkin;
+    public Material humanSkin;
+
+    public PlayerController player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        dir = new Vector3(0.0f, 0.0f, -1.0f);
+        ///dir = new Vector3(0.0f, 0.0f, -1.0f);
         speed = 10.0f;
-
-        isPlayerBullet = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void setBullet(bool t_isPlayerBullet, Vector3 t_dir)
+    {
+        Renderer skin = GetComponent<Renderer>();
+
+        if (t_isPlayerBullet)
+        {
+            isPlayerBullet = true;
+            skin.material = humanSkin;
+        }
+        else
+        {
+            isPlayerBullet = false;
+            skin.material = enemySkin;
+        }
+
+        dir = t_dir;
+    }
+
+    private void OnTriggerEnter(UnityEngine.Collider collision)
     {
         if (collision.gameObject.CompareTag("Player") && !isPlayerBullet)
         {
-            PlayerController playerScript = collision.gameObject.GetComponent<PlayerController>();
-            playerScript.hurt();
+            player = collision.gameObject.GetComponent<PlayerController>();
+            if (player)
+                player.hurt();
             Destroy(this.gameObject);
         }
         else if(collision.gameObject.CompareTag("Enemy") && isPlayerBullet)
         {
+            //PlayerController playerScript = collision.gameObject.GetComponent<PlayerController>();
+            player.scorePlusPlus();
             Destroy(collision.gameObject);
             Destroy(this.gameObject);
         }

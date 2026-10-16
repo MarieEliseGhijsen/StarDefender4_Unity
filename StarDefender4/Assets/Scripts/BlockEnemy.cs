@@ -42,7 +42,8 @@ public class BlockEnemy : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, rb.position, bulletPrefab.transform.rotation);
         Buulet script = bullet.GetComponent<Buulet>();
-        script.isPlayerBullet = false;
+        Vector3 bulletDir = new Vector3(0.0f, 0.0f, -1.0f);
+        script.setBullet(false, bulletDir);
     }
 
     // Update is called once per frame

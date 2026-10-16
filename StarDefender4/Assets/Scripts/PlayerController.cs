@@ -9,9 +9,9 @@ using static UnityEditor.ShaderData;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
-    public GameObject scoreTextObject;
-    public GameObject livesTextObject;
-    public GameObject winTextObject;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI livesText;
+    public GameObject winText;
 
     public Material flash;
     public Material human;
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         lives = 3;
         SetLivesText();
 
-        winTextObject.SetActive(false);
+        winText.SetActive(false);
 
         controls = new InputSystem_Actions();
         controls.Player.Enable();
@@ -55,9 +55,17 @@ public class PlayerController : MonoBehaviour
 
     void shoot(InputAction.CallbackContext context)
     {
-        GameObject bullet = Instantiate(bulletPrefab, rb.position, bulletPrefab.transform.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, rb.position - new Vector3(0.0f, 0.0f, -1.0f), bulletPrefab.transform.rotation);
         Buulet script = bullet.GetComponent<Buulet>();
-        script.isPlayerBullet = true;
+        Vector3 bulletDir = new Vector3 (0.0f, 0.0f, 1.0f);
+        script.setBullet(true, bulletDir);
+        script.player = this;
+    }
+
+    public void scorePlusPlus()
+    {
+        score += 1;
+        SetScoreText();
     }
 
     public void hurt()
@@ -99,12 +107,12 @@ public class PlayerController : MonoBehaviour
 
     void SetScoreText()
     {
-        scoreTextObject.GetComponent<TextMeshProUGUI>().text = "Score : " + (score).ToString();
+        scoreText.text = "Score : " + (score).ToString();
     }
 
     void SetLivesText()
     {
-        livesTextObject.GetComponent<TextMeshProUGUI>().text = "Lives : " + (lives).ToString();
+        livesText.text = "Lives : " + (lives).ToString();
     }
 
     private void FixedUpdate()
@@ -118,8 +126,7 @@ public class PlayerController : MonoBehaviour
         if(lives <= 0)
         {
             Destroy(GameObject.FindGameObjectWithTag("Player"));
-            winTextObject.SetActive(true);
-            winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+            winText.SetActive(true);
         }
 
         if(invinsible && invinsibleTimer > INVINSIBLE_TIMER_END)
