@@ -22,9 +22,15 @@ public class PlayerController : MonoBehaviour
     int score;
     int lives;
 
+    bool justShot;
+
     bool invinsible;
     float invinsibleTimer;
     const float INVINSIBLE_TIMER_END = 2.0f;
+
+    public GameObject bulletPrefab;
+
+    private InputSystem_Actions controls;
 
     //private MonoBehaviour enemyScript = GetMonoBehaviour()
 
@@ -32,38 +38,50 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        invinsibleTimer = 0.0f;
 
         score = 0;
         SetScoreText();
+
         lives = 3;
         SetLivesText();
+
         winTextObject.SetActive(false);
-        invinsibleTimer = 0.0f;
+
+        controls = new InputSystem_Actions();
+        controls.Player.Enable();
+        controls.Player.Attack.performed += shoot;
     }
-    private void OnCollisionEnter(Collision collision)
+
+    void shoot(InputAction.CallbackContext context)
+    {
+        GameObject bullet = Instantiate(bulletPrefab, rb.position, bulletPrefab.transform.rotation);
+        Buulet script = bullet.GetComponent<Buulet>();
+        script.isPlayerBullet = true;
+    }
+
+    public void hurt()
     {
         if (invinsible)
         {
             return;
         }
 
-        if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("Enemy"))
-        {
-            Renderer skin = GetComponent<Renderer>();
-            lives--;
-            SetLivesText();
-            Destroy(collision.gameObject);
+        lives--;
+        SetLivesText();
 
-            invinsible = true;
-            FlashChange(invinsible);
-        }
+        invinsible = true;
+        FlashChange(invinsible);
     }
 
-    void OnMove(InputValue movementValue)
-    {
-        Vector2 movementVector = movementValue.Get<Vector2>();
-        movementX = movementVector.x;
-    }
+    //void OnMove(InputValue movementValue)
+    //{
+    //    Vector2 movementVector = movementValue.Get<Vector2>();
+    //    movementX = movementVector.x;
+
+    //    int shot = (int)movementVector.y;
+    //    justShot = shot != 0;
+    //}
 
     private void FlashChange(bool t_flash)
     {
@@ -91,7 +109,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 movement = new Vector3(movementX, 0.0f, 0.0f);
+        Vector2 moveInput = controls.Player.Move.ReadValue<Vector2>();
+        Vector3 movement = new Vector3(moveInput.x, 0.0f, 0.0f);
+
 
         rb.AddForce(movement * speed);
 

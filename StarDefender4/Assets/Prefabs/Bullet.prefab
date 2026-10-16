@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3610668917476954540}
   - component: {fileID: 8585393735121435592}
   - component: {fileID: -1442166772787331393}
+  - component: {fileID: -6320117282624735327}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -105,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Buulet
   speed: 0
+  isPlayerBullet: 0
 --- !u!54 &-1442166772787331393
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -130,5 +132,28 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!136 &-6320117282624735327
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855397362837764576}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.9930388
+  m_Height: 14.742584
+  m_Direction: 1
+  m_Center: {x: -0.077427864, y: 7.371292, z: -0.30755785}
