@@ -1,9 +1,12 @@
+using System.Data;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlockEnemy : MonoBehaviour
 {
+    private int lives;
+
     private Rigidbody rb;
     private Vector3 dir;
     private Vector3 prevDir;
@@ -22,6 +25,7 @@ public class BlockEnemy : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        lives = 2;
 
         dir.x = 0.0f;
         dir.y = 0.0f;
@@ -43,12 +47,23 @@ public class BlockEnemy : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, rb.position, bulletPrefab.transform.rotation);
         Buulet script = bullet.GetComponent<Buulet>();
         Vector3 bulletDir = new Vector3(0.0f, 0.0f, -1.0f);
-        script.setBullet(false, bulletDir);
+        script.setBullet(false, bulletDir, false);
+    }
+
+    public void hurt(bool t_powerUp)
+    {
+        if(t_powerUp) lives = lives - 2;
+        else lives = lives - 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(lives <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
         if (shootTimer > SHOOT_TIMER_END)
         {
             shootTimer = Random.Range(0.0f, SHOOT_TIMER_END);

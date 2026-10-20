@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     private InputSystem_Actions controls;
 
+    private bool powerUp;
+
     //private MonoBehaviour enemyScript = GetMonoBehaviour()
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,6 +53,8 @@ public class PlayerController : MonoBehaviour
         controls = new InputSystem_Actions();
         controls.Player.Enable();
         controls.Player.Attack.performed += shoot;
+
+        powerUp = false;
     }
 
     void shoot(InputAction.CallbackContext context)
@@ -58,8 +62,14 @@ public class PlayerController : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, rb.position - new Vector3(0.0f, 0.0f, -1.0f), bulletPrefab.transform.rotation);
         Buulet script = bullet.GetComponent<Buulet>();
         Vector3 bulletDir = new Vector3 (0.0f, 0.0f, 1.0f);
-        script.setBullet(true, bulletDir);
+        script.setBullet(true, bulletDir, powerUp);
         script.player = this;
+    }
+
+    public void powerUP()
+    {
+        powerUp = true;
+        Debug.Log("Collected powerup");
     }
 
     public void scorePlusPlus()

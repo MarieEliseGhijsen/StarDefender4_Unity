@@ -185,7 +185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   speed: 10
-  textObject: {fileID: 0}
   scoreText: {fileID: 0}
   livesText: {fileID: 0}
   winText: {fileID: 0}

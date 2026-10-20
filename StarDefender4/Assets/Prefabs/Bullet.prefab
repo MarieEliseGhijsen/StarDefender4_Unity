@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 855397362837764576}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -1.7936295, y: 0.06522462, z: 0.85505944}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 0.1, y: 0.049999997, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -110,6 +110,9 @@ MonoBehaviour:
   enemySkin: {fileID: 2100000, guid: 87c07835f8783ea40af741473b1b31cb, type: 2}
   humanSkin: {fileID: 2100000, guid: eeb2a34eb410ab044a11c11bfc830302, type: 2}
   player: {fileID: 8569342743236365416, guid: ad479a2ad9b3756409e7c34ac1d70a0d, type: 3}
+  circEnemy: {fileID: 8282006875178296381, guid: ca69c23f8fadbba4f818e34c928da45a, type: 3}
+  freeEnemy: {fileID: 3683156237665079488, guid: 3d6d98d7831ae26468ac32cfcbf86b05, type: 3}
+  blockEnemy: {fileID: 7731754946053891705, guid: d64aa87d61b32ef41919088d29cdeef1, type: 3}
 --- !u!54 &-1442166772787331393
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -11,6 +11,11 @@ public class Buulet : MonoBehaviour
     public Material humanSkin;
 
     public PlayerController player;
+    public CircEnemy circEnemy;
+    public FreeEnemy freeEnemy;
+    public BlockEnemy blockEnemy;
+
+    private bool powerUp;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,7 +25,7 @@ public class Buulet : MonoBehaviour
         speed = 10.0f;
     }
 
-    public void setBullet(bool t_isPlayerBullet, Vector3 t_dir)
+    public void setBullet(bool t_isPlayerBullet, Vector3 t_dir, bool t_powerUp)
     {
         Renderer skin = GetComponent<Renderer>();
 
@@ -34,8 +39,10 @@ public class Buulet : MonoBehaviour
             isPlayerBullet = false;
             skin.material = enemySkin;
         }
-
+        
+        powerUp = t_powerUp;
         dir = t_dir;
+        //transform.rotation = Quaternion.Euler(0 * Mathf.Rad2Deg, dir.y * Mathf.Rad2Deg, -90);
     }
 
     private void OnTriggerEnter(UnityEngine.Collider collision)
@@ -47,11 +54,31 @@ public class Buulet : MonoBehaviour
                 player.hurt();
             Destroy(this.gameObject);
         }
-        else if(collision.gameObject.CompareTag("Enemy") && isPlayerBullet)
+        else if(collision.gameObject.CompareTag("Circ") && isPlayerBullet)
         {
             //PlayerController playerScript = collision.gameObject.GetComponent<PlayerController>();
             player.scorePlusPlus();
-            Destroy(collision.gameObject);
+            circEnemy = collision.gameObject.GetComponent<CircEnemy>();
+            if (circEnemy)
+                circEnemy.hurt(powerUp);
+            Destroy(this.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Block") && isPlayerBullet)
+        {
+            //PlayerController playerScript = collision.gameObject.GetComponent<PlayerController>();
+            player.scorePlusPlus();
+            blockEnemy = collision.gameObject.GetComponent<BlockEnemy>();
+            if (blockEnemy)
+                blockEnemy.hurt(powerUp);
+            Destroy(this.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Free") && isPlayerBullet)
+        {
+            //PlayerController playerScript = collision.gameObject.GetComponent<PlayerController>();
+            player.scorePlusPlus();
+            freeEnemy = collision.gameObject.GetComponent<FreeEnemy>();
+            if (freeEnemy)
+                freeEnemy.hurt(powerUp);
             Destroy(this.gameObject);
         }
     }

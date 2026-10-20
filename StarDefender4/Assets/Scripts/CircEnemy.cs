@@ -12,10 +12,13 @@ public class CircEnemy : MonoBehaviour
     private float shootTimer;
     private const int SHOOT_TIMER_END = 1000;
 
+    int lives;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        lives = 2;
         t = 0.0f;
 
         shootTimer = Random.Range(0.0f, SHOOT_TIMER_END);
@@ -26,12 +29,23 @@ public class CircEnemy : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, rb.position, bulletPrefab.transform.rotation);
         Buulet script = bullet.GetComponent<Buulet>();
         Vector3 bulletDir = new Vector3(0.0f, 0.0f, -1.0f);
-        script.setBullet(false, bulletDir);
+        script.setBullet(false, bulletDir, false);
+    }
+
+    public void hurt(bool t_powerUp)
+    {
+        if (t_powerUp) lives = lives - 2;
+        else lives = lives - 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (lives <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
         if (shootTimer > SHOOT_TIMER_END)
         {
             shootTimer = Random.Range(0.0f, SHOOT_TIMER_END);

@@ -7,11 +7,16 @@ TagManager:
   - Pickup
   - Enemy
   - Bullet
+  - Powerup
+  - Undefined
+  - Circ
+  - Free
+  - Block
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Walls
   - Water
   - UI
   - 
