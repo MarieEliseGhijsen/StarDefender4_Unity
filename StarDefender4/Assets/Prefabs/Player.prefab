@@ -190,4 +190,6 @@ MonoBehaviour:
   winText: {fileID: 0}
   flash: {fileID: 2100000, guid: 6b210cf43e047eb4d93fd09b48554bf5, type: 2}
   human: {fileID: 2100000, guid: e3dc8209aa6774345aa86d6e386eedf9, type: 2}
+  superFlash: {fileID: 2100000, guid: 53bf5d59636bad2428049db64aef0cbc, type: 2}
+  superHuman: {fileID: 2100000, guid: cde8b43014dca89459c20edaae15e711, type: 2}
   bulletPrefab: {fileID: 855397362837764576, guid: 3236dd16328f6f34ebde1288dc2f722c, type: 3}

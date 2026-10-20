@@ -17,6 +17,7 @@ public class PowerUp : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         dir = new Vector3(0.0f, 0.0f, -1.0f);
+        speed = 3.0f;
         spawnTimer = Random.Range(0.0f, SPAWN_TIMER_END);
     }
 

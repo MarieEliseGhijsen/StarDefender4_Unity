@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     public Material flash;
     public Material human;
+    public Material superFlash;
+    public Material superHuman;
 
     private Rigidbody rb;
     private float movementX;
@@ -33,6 +35,8 @@ public class PlayerController : MonoBehaviour
     private InputSystem_Actions controls;
 
     private bool powerUp;
+    float powerUpTimer;
+    const float POWERUP_TIMER_END = 10.0f;
 
     //private MonoBehaviour enemyScript = GetMonoBehaviour()
 
@@ -69,6 +73,7 @@ public class PlayerController : MonoBehaviour
     public void powerUP()
     {
         powerUp = true;
+        FlashChange();
         Debug.Log("Collected powerup");
     }
 
@@ -89,7 +94,7 @@ public class PlayerController : MonoBehaviour
         SetLivesText();
 
         invinsible = true;
-        FlashChange(invinsible);
+        FlashChange();
     }
 
     //void OnMove(InputValue movementValue)
@@ -101,18 +106,28 @@ public class PlayerController : MonoBehaviour
     //    justShot = shot != 0;
     //}
 
-    private void FlashChange(bool t_flash)
+    private void FlashChange()
     {
         Renderer skin = GetComponent<Renderer>();
 
-        if (t_flash)
+        if (invinsible && !powerUp)
         {
             skin.material = flash;
         }
-        else
+        else if(!invinsible && !powerUp)
         {
             skin.material = human;
         }
+        else if(invinsible && powerUp)
+        {
+            skin.material = superFlash;
+        }
+        else if (!invinsible && powerUp)
+        {
+            skin.material = superHuman;
+        }
+
+        Debug.Log(skin);
     }
 
     void SetScoreText()
@@ -143,11 +158,21 @@ public class PlayerController : MonoBehaviour
         {
             invinsible = false;
             invinsibleTimer = 0.0f;
-            FlashChange(invinsible);
+            FlashChange();
         }
         else if (invinsible)
         {
             invinsibleTimer += Time.deltaTime;
+        }
+
+        if(powerUp && powerUpTimer >= POWERUP_TIMER_END)
+        {
+            powerUp = false;
+            FlashChange();
+        }
+        else if(powerUp)
+        {
+            powerUpTimer++;
         }
     }
 
