@@ -34,9 +34,9 @@ public class PlayerController : MonoBehaviour
 
     private InputSystem_Actions controls;
 
-    private bool powerUp;
+    public bool powerUp;
     float powerUpTimer;
-    const float POWERUP_TIMER_END = 10.0f;
+    const float POWERUP_TIMER_END = 350.0f;
 
     //private MonoBehaviour enemyScript = GetMonoBehaviour()
 
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         invinsibleTimer = 0.0f;
+        powerUpTimer = 0.0f;
 
         score = 0;
         SetScoreText();
@@ -168,6 +169,7 @@ public class PlayerController : MonoBehaviour
         if(powerUp && powerUpTimer >= POWERUP_TIMER_END)
         {
             powerUp = false;
+            powerUpTimer = 0.0f;
             FlashChange();
         }
         else if(powerUp)

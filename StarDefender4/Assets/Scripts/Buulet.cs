@@ -81,6 +81,13 @@ public class Buulet : MonoBehaviour
                 freeEnemy.hurt(powerUp);
             Destroy(this.gameObject);
         }
+        else if (collision.gameObject.CompareTag("Powerup") && isPlayerBullet)
+        {
+            PowerUp powerScript = collision.gameObject.GetComponent<PowerUp>();
+            player.powerUP();
+            powerScript.goInactive();
+            Destroy(this.gameObject);
+        }
     }
 
     // Update is called once per frame

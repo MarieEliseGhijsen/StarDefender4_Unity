@@ -8,7 +8,7 @@ public class PowerUp : MonoBehaviour
 
     public bool active = false;
     private float spawnTimer;
-    private const int SPAWN_TIMER_END = 1000;
+    private const int SPAWN_TIMER_END = 12000;
 
     public PlayerController player;
 
@@ -35,6 +35,14 @@ public class PowerUp : MonoBehaviour
         }
     }
 
+    public void goInactive()
+    {
+        active = false;
+        spawnTimer = Random.Range(0.0f, SPAWN_TIMER_END);
+
+        rb.position = new Vector3(Random.Range(-9.0f, 9.0f), 0.0f, 9.0f);
+    }
+
         // Update is called once per frame
     void Update()
     {
@@ -43,7 +51,7 @@ public class PowerUp : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             rb.AddForce(dir * speed);
 
-            if(rb.position.z <= 0.0f)
+            if(rb.position.z <= -2.0f)
             {
                 active = false;
             }
@@ -55,7 +63,7 @@ public class PowerUp : MonoBehaviour
                 active = true;
                 spawnTimer = Random.Range(0.0f, SPAWN_TIMER_END);
 
-                rb.position = new Vector3(Random.Range(-9.0f, 9.0f), 0.0f, 5.0f);
+                rb.position = new Vector3(Random.Range(-9.0f, 9.0f), 0.0f, 9.0f);
             }
             else
             {
