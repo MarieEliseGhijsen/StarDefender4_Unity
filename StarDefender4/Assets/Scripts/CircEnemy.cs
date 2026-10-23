@@ -19,7 +19,7 @@ public class CircEnemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         lives = 2;
-        t = 0.0f;
+        t = Random.Range(0.0f, 22.0f);
 
         shootTimer = Random.Range(0.0f, SHOOT_TIMER_END);
     }

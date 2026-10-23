@@ -1,49 +1,59 @@
 using UnityEngine;
+using static Unity.Collections.AllocatorManager;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject enemyPrefab;
-    public GameObject powerupPrefab;
-    public int enemyCount;
-    public int waveNumber = 1;
-
-    private float spawnRange = 9.0f;
+    public GameObject BE_Prefab;
+    public GameObject CE_Prefab;
+    public GameObject FE_Prefab;
+    public int waveNumber = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SpawnEnemyWave(waveNumber);
-        //Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
+        SpawnEnemyWave();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //enemyCount = FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
-
-        if(enemyCount == 0)
+        if(!(GameObject.FindWithTag("Block") || GameObject.FindWithTag("Circ") || GameObject.FindWithTag("Free")))
         {
             waveNumber = waveNumber + 1;
-            SpawnEnemyWave(waveNumber);
-            Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
+            SpawnEnemyWave();
         }
     }
 
-    void SpawnEnemyWave(int enemiesToSpanw)
+    void SpawnEnemyWave()
     {
-        for (int i = 0; i < enemiesToSpanw; i++)
+        if (waveNumber == 1)
         {
-            Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+            for (int i = 0; i < 8; i++) //row - 8 enemies between -10 and 10
+            {
+                for (int j = 1; j <= 2; j++) //col - 2 enemies between 4 and 6
+                {
+                    Instantiate(BE_Prefab, new Vector3((2 + i * 2) - 10, 0.25f, (2 + j * 2)), BE_Prefab.transform.rotation);
+                }
+            }
         }
-    }
-
-    private Vector3 GenerateSpawnPosition()
-    {
-        float spawnPosX = Random.Range(-spawnRange, spawnRange);
-        float spawnPosZ = Random.Range(-spawnRange, spawnRange);
-
-        Vector3 randomPos = new Vector3(spawnPosX, 0, spawnPosZ);
-
-        return randomPos;
+        else if (waveNumber == 2)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                Instantiate(CE_Prefab, new Vector3(0.0f, 0.25f, 0.0f), CE_Prefab.transform.rotation);
+            }
+        }
+        else if (waveNumber == 3)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                Instantiate(FE_Prefab, new Vector3(Random.Range(-8,8), 0.25f, Random.Range(-4, 4)), FE_Prefab.transform.rotation);
+            }
+        }
+        else
+        {
+            waveNumber = 1;
+            SpawnEnemyWave();
+        }
     }
 }

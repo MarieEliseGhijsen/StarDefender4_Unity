@@ -16,7 +16,7 @@ public class FreeEnemy : MonoBehaviour
     private float dirrTimer;
     private const int DIRR_TIMER_END = 1000;
     private float shootTimer;
-    private const int SHOOT_TIMER_END = 1000;
+    private const int SHOOT_TIMER_END = 10000;
 
     private const int MIN_LOCATION_X = -9;
     private const int MAX_LOCATION_X = 9;
@@ -105,20 +105,24 @@ public class FreeEnemy : MonoBehaviour
 
         if(rb.position.x > MAX_LOCATION_X + 0.1f)
         {
-            rb.position = new Vector3(MIN_LOCATION_X - 0.1f, 0.0f, rb.position.z);
+            rb.position = new Vector3(MIN_LOCATION_X, 0.0f, rb.position.z);
+            dirrTimer = 0;
         }
         else if (rb.position.x < MIN_LOCATION_X - 0.1f)
         {
-            rb.position = new Vector3(MAX_LOCATION_X + 0.1f, 0.0f, rb.position.z);
+            rb.position = new Vector3(MAX_LOCATION_X, 0.0f, rb.position.z);
+            dirrTimer = 0;
         }
 
         if (rb.position.z > MAX_LOCATION_Z + 0.1f)
         {
-            rb.position = new Vector3(rb.position.x, 0.0f, MIN_LOCATION_Z - 0.1f);
+            rb.position = new Vector3(rb.position.x, 0.0f, MIN_LOCATION_Z);
+            dirrTimer = 0;
         }
         else if (rb.position.z < MIN_LOCATION_Z - 0.1f)
         {
-            rb.position = new Vector3(rb.position.x, 0.0f, MAX_LOCATION_Z + 0.1f);
+            rb.position = new Vector3(rb.position.x, 0.0f, MAX_LOCATION_Z);
+            dirrTimer = 0;
         }
     }
 }
