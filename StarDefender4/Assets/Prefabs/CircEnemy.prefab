@@ -154,3 +154,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CircEnemy
   bulletPrefab: {fileID: 855397362837764576, guid: 3236dd16328f6f34ebde1288dc2f722c, type: 3}
+  dieAudioPrefab: {fileID: 1726674930826121667, guid: 13f6c5ee9ab8d5c4f90fdc9d31ad6d0e, type: 3}

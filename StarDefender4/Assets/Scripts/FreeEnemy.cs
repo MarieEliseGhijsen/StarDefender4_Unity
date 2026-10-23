@@ -5,6 +5,8 @@ public class FreeEnemy : MonoBehaviour
 {
     private int lives;
 
+    public GameObject dieAudioPrefab;
+
     private Rigidbody rb;
     private Vector3 dir;
     private float speed;
@@ -67,6 +69,7 @@ public class FreeEnemy : MonoBehaviour
     {
         if (lives <= 0)
         {
+            Instantiate(dieAudioPrefab, new Vector3(0.0f, 0.0f, 0.0f), dieAudioPrefab.transform.rotation);
             Destroy(this.gameObject);
         }
 

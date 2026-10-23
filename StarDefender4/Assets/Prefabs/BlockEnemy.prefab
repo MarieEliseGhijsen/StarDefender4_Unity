@@ -153,5 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 808580189da5f95449d367a2abe0df78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlockEnemy
+  dieAudioPrefab: {fileID: 1726674930826121667, guid: 13f6c5ee9ab8d5c4f90fdc9d31ad6d0e, type: 3}
   speed: 0
   bulletPrefab: {fileID: 855397362837764576, guid: 3236dd16328f6f34ebde1288dc2f722c, type: 3}

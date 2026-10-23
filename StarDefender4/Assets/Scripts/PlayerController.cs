@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
     float powerUpTimer;
     const float POWERUP_TIMER_END = 350.0f;
 
+    public GameObject hurtAudioPrefab;
+    public GameObject fireAudioPrefab;
+
     //private MonoBehaviour enemyScript = GetMonoBehaviour()
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -64,6 +67,8 @@ public class PlayerController : MonoBehaviour
 
     void shoot(InputAction.CallbackContext context)
     {
+        Instantiate(fireAudioPrefab, new Vector3(0.0f, 0.0f, 0.0f), fireAudioPrefab.transform.rotation);
+
         GameObject bullet = Instantiate(bulletPrefab, rb.position - new Vector3(0.0f, 0.0f, -1.0f), bulletPrefab.transform.rotation);
         Buulet script = bullet.GetComponent<Buulet>();
         Vector3 bulletDir = new Vector3 (0.0f, 0.0f, 1.0f);
@@ -93,6 +98,8 @@ public class PlayerController : MonoBehaviour
 
         lives--;
         SetLivesText();
+
+        Instantiate(hurtAudioPrefab, new Vector3(0.0f, 0.0f, 0.0f), hurtAudioPrefab.transform.rotation);
 
         invinsible = true;
         FlashChange();

@@ -193,3 +193,6 @@ MonoBehaviour:
   superFlash: {fileID: 2100000, guid: 53bf5d59636bad2428049db64aef0cbc, type: 2}
   superHuman: {fileID: 2100000, guid: cde8b43014dca89459c20edaae15e711, type: 2}
   bulletPrefab: {fileID: 855397362837764576, guid: 3236dd16328f6f34ebde1288dc2f722c, type: 3}
+  powerUp: 0
+  hurtAudioPrefab: {fileID: 781461256554737400, guid: f7f39648a6704454bb128defe0216055, type: 3}
+  fireAudioPrefab: {fileID: 2374402012467202890, guid: fe1b5cc0a0664894887e3efebdf8fa4e, type: 3}

@@ -14,6 +14,8 @@ public class CircEnemy : MonoBehaviour
 
     int lives;
 
+    public GameObject dieAudioPrefab;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -43,6 +45,7 @@ public class CircEnemy : MonoBehaviour
     {
         if (lives <= 0)
         {
+            Instantiate(dieAudioPrefab, new Vector3(0.0f, 0.0f, 0.0f), dieAudioPrefab.transform.rotation);
             Destroy(this.gameObject);
         }
 

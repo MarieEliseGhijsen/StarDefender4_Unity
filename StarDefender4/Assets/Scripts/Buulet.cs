@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class Buulet : MonoBehaviour
@@ -61,6 +62,7 @@ public class Buulet : MonoBehaviour
             circEnemy = collision.gameObject.GetComponent<CircEnemy>();
             if (circEnemy)
                 circEnemy.hurt(powerUp);
+
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.CompareTag("Block") && isPlayerBullet)
@@ -70,6 +72,7 @@ public class Buulet : MonoBehaviour
             blockEnemy = collision.gameObject.GetComponent<BlockEnemy>();
             if (blockEnemy)
                 blockEnemy.hurt(powerUp);
+
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.CompareTag("Free") && isPlayerBullet)
@@ -79,6 +82,7 @@ public class Buulet : MonoBehaviour
             freeEnemy = collision.gameObject.GetComponent<FreeEnemy>();
             if (freeEnemy)
                 freeEnemy.hurt(powerUp);
+
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.CompareTag("Powerup") && isPlayerBullet)
