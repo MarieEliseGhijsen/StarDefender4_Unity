@@ -114,7 +114,6 @@ MonoBehaviour:
   circEnemy: {fileID: 8282006875178296381, guid: ca69c23f8fadbba4f818e34c928da45a, type: 3}
   freeEnemy: {fileID: 3683156237665079488, guid: 3d6d98d7831ae26468ac32cfcbf86b05, type: 3}
   blockEnemy: {fileID: 7731754946053891705, guid: d64aa87d61b32ef41919088d29cdeef1, type: 3}
-  dieAudioPrefab: {fileID: 1726674930826121667, guid: 13f6c5ee9ab8d5c4f90fdc9d31ad6d0e, type: 3}
 --- !u!54 &-1442166772787331393
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -178,13 +177,13 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 97276a86bbac4e849b5c04fb67654137, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

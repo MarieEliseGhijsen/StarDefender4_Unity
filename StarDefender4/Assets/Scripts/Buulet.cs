@@ -100,7 +100,7 @@ public class Buulet : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(dir * speed);
 
-        if(rb.position.z < -2.0f)
+        if(rb.position.z < -2.0f || rb.position.z > 8.0f)
         {
             Destroy(this.gameObject);
         }
